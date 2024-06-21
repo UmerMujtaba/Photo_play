@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photoplay/screens/forgot_password.dart';
 import 'package:photoplay/screens/login_screen.dart';
 import 'package:photoplay/screens/registration_screen.dart';
 
@@ -12,11 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/registration',
+      initialRoute: '/forgot',
       routes: {
         '/login': (context) => const LoginScreen(),
         '/registration': (context) => const RegistrationScreen(),
-        //'/forgot': (context) => const ForgotPassword(),
+        '/forgot': (context) => const ForgotPassword(),
       },
     );
   }
