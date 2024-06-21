@@ -37,7 +37,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: const Icon(
                   Icons.person_rounded,
                   size: 90,
-                  color: Colors.yellowAccent,
+                  color: Colors.orangeAccent,
                 ),
               ),
             ),
