@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photoplay/screens/login_screen.dart';
 
 class RegisterOption extends StatelessWidget {
   const RegisterOption({Key? key}) : super(key: key);
@@ -180,7 +181,10 @@ class RegisterOption extends StatelessWidget {
             ),
           ),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
             style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.fromLTRB(120, 10, 120, 10),
                 backgroundColor: Colors.transparent,
