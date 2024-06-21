@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:photoplay/screens/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -122,7 +123,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MainScreen()));
+                  },
                   style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(120, 10, 120, 10),
                       backgroundColor: Colors.transparent,
