@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:photoplay/screens/actor_screen.dart';
 import 'package:photoplay/screens/download_screen.dart';
 import 'package:photoplay/screens/forgot_password_screen.dart';
 import 'package:photoplay/screens/home_screen.dart';
 import 'package:photoplay/screens/main_screen.dart';
 import 'package:photoplay/screens/login_screen.dart';
+import 'package:photoplay/screens/movie_detail_screen.dart';
 import 'package:photoplay/screens/profile_screen.dart';
 import 'package:photoplay/screens/registration_screen.dart';
 import 'package:photoplay/screens/search_screen.dart';
@@ -27,6 +29,9 @@ class MyApp extends StatelessWidget {
         '/search': (context) => const SearchScreen(),
         '/profile': (context) => const ProfileScreen(),
         '/download':(context)=>const DownloadScreen(),
+        '/detail': (context)=> const MovieDetailScreen(),
+        '/actor': (context)=> const ActorDetailScreen(),
+
       },
       // home: HomeScreen(),
     );
