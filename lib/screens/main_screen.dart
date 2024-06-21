@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:photoplay/components/bottom_bar.dart';
+import 'package:photoplay/components/star_component.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -10,11 +11,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  var _myColorOne = Colors.grey;
-  var _myColorTwo = Colors.grey;
-  var _myColorThree = Colors.grey;
-  var _myColorFour = Colors.grey;
-  var _myColorFive = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +33,18 @@ class _MainScreenState extends State<MainScreen> {
                       ],
                     ).createShader(bounds),
                     blendMode: BlendMode.srcATop,
-                    child: const SizedBox(
+                    child: SizedBox(
                       height: 550,
-                      child: Image(
-                        image: AssetImage('assets/movies/dora.jpg'),
-                        fit: BoxFit.fill,
-                        width: double.maxFinite,
-                        height: double.maxFinite,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, '/detail');
+                        },
+                        child: const Image(
+                          image: AssetImage('assets/movies/dora.jpg'),
+                          fit: BoxFit.fill,
+                          width: double.maxFinite,
+                          height: double.maxFinite,
+                        ),
                       ),
                     ),
                   ),
@@ -53,66 +54,7 @@ class _MainScreenState extends State<MainScreen> {
                 '4.0',
                 style: TextStyle(color: Colors.white, fontSize: 34),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.star),
-                    onPressed: () => setState(() {
-                      _myColorOne = Colors.orange;
-                      _myColorTwo = Colors.grey;
-                      _myColorThree = Colors.grey;
-                      _myColorFour = Colors.grey;
-                      _myColorFive = Colors.grey;
-                    }),
-                    color: _myColorOne,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.star),
-                    onPressed: () => setState(() {
-                      _myColorOne = Colors.orange;
-                      _myColorTwo = Colors.orange;
-                      _myColorThree = Colors.grey;
-                      _myColorFour = Colors.grey;
-                      _myColorFive = Colors.grey;
-                    }),
-                    color: _myColorTwo,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.star),
-                    onPressed: () => setState(() {
-                      _myColorOne = Colors.orange;
-                      _myColorTwo = Colors.orange;
-                      _myColorThree = Colors.orange;
-                      _myColorFour = Colors.grey;
-                      _myColorFive = Colors.grey;
-                    }),
-                    color: _myColorThree,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.star),
-                    onPressed: () => setState(() {
-                      _myColorOne = Colors.orange;
-                      _myColorTwo = Colors.orange;
-                      _myColorThree = Colors.orange;
-                      _myColorFour = Colors.orange;
-                      _myColorFive = Colors.grey;
-                    }),
-                    color: _myColorFour,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.star),
-                    onPressed: () => setState(() {
-                      _myColorOne = Colors.orange;
-                      _myColorTwo = Colors.orange;
-                      _myColorThree = Colors.orange;
-                      _myColorFour = Colors.orange;
-                      _myColorFive = Colors.orange;
-                    }),
-                    color: _myColorFive,
-                  ),
-                ],
-              ),
+             StarComponent(),
               const Padding(
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: Row(
@@ -172,7 +114,6 @@ class _MainScreenState extends State<MainScreen> {
                     //mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Card(
-
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -287,7 +228,8 @@ class _MainScreenState extends State<MainScreen> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                      ), Card(
+                      ),
+                      Card(
                         elevation: 10,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
