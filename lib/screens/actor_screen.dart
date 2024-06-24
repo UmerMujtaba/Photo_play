@@ -10,7 +10,7 @@ class ActorDetailScreen extends StatefulWidget {
 class _ActorDetailScreenState extends State<ActorDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(),
     );
   }

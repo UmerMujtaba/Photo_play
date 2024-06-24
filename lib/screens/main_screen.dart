@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:photoplay/components/bottom_bar.dart';
 import 'package:photoplay/components/star_component.dart';
 
+import '../components/main_movies_card.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -54,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
                 '4.0',
                 style: TextStyle(color: Colors.white, fontSize: 34),
               ),
-             StarComponent(),
+              const StarComponent(),
               const Padding(
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: Row(
@@ -106,203 +108,7 @@ class _MainScreenState extends State<MainScreen> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    //mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/narcos.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/deadpool.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/annabel.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/chernobyl.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/dark.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/friend.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/ghost.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/grey.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/knight.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/mission.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/money.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/peaky.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const SizedBox(
-                          width: 100,
-                          height: 150,
-                          child: Image(
-                            image: AssetImage('assets/movies/viking.jfif'),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              const MainMoviesCard(),
             ],
           ),
         ),
