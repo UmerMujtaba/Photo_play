@@ -11,13 +11,6 @@ class ActorDetailScreen extends StatefulWidget {
 }
 
 class _ActorDetailScreenState extends State<ActorDetailScreen> {
-  final List<Map<String, String>> actors = const [
-    {'image': 'assets/actor/isabela.jfif', 'name': 'Isabela Moner'},
-    {'image': 'assets/actor/micheal.jfif', 'name': 'Micheal Pena'},
-    {'image': 'assets/actor/eva.jfif', 'name': 'Eva Longoria'},
-    {'image': 'assets/actor/katherine.jfif', 'name': 'Katherine Langford'},
-    {'image': 'assets/actor/emilia.jfif', 'name': 'Emilia Clark'},
-  ];
 
   @override
   Widget build(BuildContext context) {
