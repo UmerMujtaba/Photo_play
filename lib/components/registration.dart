@@ -169,32 +169,6 @@ class RegisterOption extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 30),
-        Container(
-          height: 44.0,
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(10),
-            gradient: const LinearGradient(
-              colors: [Colors.orange, Colors.orangeAccent],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
-            },
-            style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.fromLTRB(120, 10, 120, 10),
-                backgroundColor: Colors.transparent,
-                shadowColor: Colors.transparent),
-            child: const Text(
-              'Register',
-              style: TextStyle(color: Colors.black, fontSize: 16),
-            ),
-          ),
-        ),
       ],
     );
   }

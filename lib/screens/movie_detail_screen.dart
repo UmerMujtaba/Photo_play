@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:photoplay/components/bottom_bar.dart';
 import 'package:photoplay/components/star_component.dart';
 
+import '../components/button.dart';
+import '../components/movie_details_actor_cards.dart';
+
 class MovieDetailScreen extends StatefulWidget {
   const MovieDetailScreen({Key? key}) : super(key: key);
 
@@ -152,28 +155,13 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     ),
                     textAlign: TextAlign.start),
                 const SizedBox(height: 20),
-                Container(
+                CustomButton(
+                  text: 'Watch Now',
                   height: 44.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: const LinearGradient(
-                      colors: [Colors.orange, Colors.orangeAccent],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent),
-                    child: const Text(
-                      'Watch Now',
-                      style: TextStyle(color: Colors.black, fontSize: 14),
-                    ),
-                  ),
+                  padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                  onPressed: () {
+                    // Add your action here
+                  },
                 ),
                 const Row(
                   children: [
@@ -186,173 +174,12 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: <Widget>[
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 10,
-                              child: const SizedBox(
-                                width: 100,
-                                height: 150,
-                                child: Image(
-                                  image:
-                                      AssetImage('assets/actor/isabela.jfif'),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            // Add some space between the card and the text
-                            const Text(
-                              'Isabela Moner',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 10),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushReplacementNamed(context, '/actor');
-                              },
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                elevation: 10,
-                                child: const SizedBox(
-                                  width: 100,
-                                  height: 150,
-                                  child: Image(
-                                    image:
-                                        AssetImage('assets/actor/micheal.jfif'),
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            // Add some space between the card and the text
-                            const Text(
-                              'Micheal Pena',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(width: 10),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 10,
-                              child: const SizedBox(
-                                width: 100,
-                                height: 150,
-                                child: Image(
-                                  image: AssetImage('assets/actor/eva.jfif'),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            // Add some space between the card and the text
-                            const Text(
-                              'Eva Longoria',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(width: 10),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 10,
-                              child: const SizedBox(
-                                width: 100,
-                                height: 150,
-                                child: Image(
-                                  image: AssetImage('assets/actor/emilia.jfif'),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            // Add some space between the card and the text
-                            const Text(
-                              'Emilia Clark',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(width: 10),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 10,
-                              child: const SizedBox(
-                                width: 100,
-                                height: 150,
-                                child: Image(
-                                  image:
-                                      AssetImage('assets/actor/katherine.jfif'),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            // Add some space between the card and the text
-                            const Text(
-                              'Katherine Langford',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                const ActorCards(),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: bar(),
+        bottomNavigationBar: const bar(),
       ),
     );
   }

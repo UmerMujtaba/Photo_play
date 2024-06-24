@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:photoplay/screens/main_screen.dart';
 
+import '../components/button.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -111,31 +113,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 15),
-              Container(
+              CustomButton(
+                text: 'LOGIN',
                 height: 44.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: const LinearGradient(
-                    colors: [Colors.orange, Colors.orangeAccent],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MainScreen()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.fromLTRB(120, 10, 120, 10),
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent),
-                  child: const Text(
-                    'LOGIN',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
+                padding: const EdgeInsets.fromLTRB(120, 10, 120, 10),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const MainScreen()));
+                },
               ),
               const SizedBox(height: 15),
               Row(
