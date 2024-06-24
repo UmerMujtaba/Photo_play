@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/button.dart';
 import '../components/registration.dart';
+import 'login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -50,6 +52,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   fontWeight: FontWeight.bold),
             ),
             const RegisterOption(),
+            CustomButton(
+              text: 'REGISTER',
+              height: 44.0,
+              padding: const EdgeInsets.fromLTRB(115, 10, 115, 10),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()));
+              },
+            ),
           ],
         ),
       ),
