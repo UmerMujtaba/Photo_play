@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 
 class ActorCards extends StatelessWidget {
-  const ActorCards({Key? key}) : super(key: key);
+  final VoidCallback onPressed;
+  const ActorCards({Key? key, required this.onPressed}) : super(key: key);
 
   final List<Map<String, String>> actors = const [
     {'image': 'assets/actor/isabela.jfif', 'name': 'Isabela Moner'},
@@ -28,17 +29,20 @@ class ActorCards extends StatelessWidget {
               padding: const EdgeInsets.only(right: 10),
               child: Column(
                 children: <Widget>[
-                  Card(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: SizedBox(
-                      width: 100,
-                      height: 150,
-                      child: Image(
-                        image: AssetImage(actor['image']!),
-                        fit: BoxFit.fill,
+                  InkWell(
+                    onTap: onPressed,
+                    child: Card(
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: SizedBox(
+                        width: 100,
+                        height: 150,
+                        child: Image(
+                          image: AssetImage(actor['image']!),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),
