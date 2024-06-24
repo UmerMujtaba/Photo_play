@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:photoplay/screens/actor_screen.dart';
 import 'package:photoplay/screens/download_screen.dart';
 import 'package:photoplay/screens/forgot_password_screen.dart';
-import 'package:photoplay/screens/home_screen.dart';
 import 'package:photoplay/screens/main_screen.dart';
 import 'package:photoplay/screens/login_screen.dart';
 import 'package:photoplay/screens/movie_detail_screen.dart';

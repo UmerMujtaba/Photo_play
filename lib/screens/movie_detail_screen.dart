@@ -4,6 +4,7 @@ import 'package:photoplay/components/star_component.dart';
 
 import '../components/button.dart';
 import '../components/movie_details_actor_cards.dart';
+import 'actor_screen.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   const MovieDetailScreen({Key? key}) : super(key: key);
@@ -174,7 +175,10 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     )
                   ],
                 ),
-                const ActorCards(),
+                ActorCards(onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const ActorDetailScreen()));
+                },),
               ],
             ),
           ),
