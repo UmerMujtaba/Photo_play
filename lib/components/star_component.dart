@@ -8,73 +8,25 @@ class StarComponent extends StatefulWidget {
 }
 
 class _StarComponentState extends State<StarComponent> {
+  int _selectedStars = 0;
+
+  void _handleStarTap(int index) {
+    setState(() {
+      _selectedStars = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var _myColorOne = Colors.grey;
-    var _myColorTwo = Colors.grey;
-    var _myColorThree = Colors.grey;
-    var _myColorFour = Colors.grey;
-    var _myColorFive = Colors.grey;
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        IconButton(
+      children: List.generate(5, (index) {
+        return IconButton(
           icon: const Icon(Icons.star),
-          onPressed: () => setState(() {
-            _myColorOne = Colors.orange;
-            _myColorTwo = Colors.grey;
-            _myColorThree = Colors.grey;
-            _myColorFour = Colors.grey;
-            _myColorFive = Colors.grey;
-          }),
-          color: _myColorOne,
-        ),
-        IconButton(
-          icon: const Icon(Icons.star),
-          onPressed: () => setState(() {
-            _myColorOne = Colors.orange;
-            _myColorTwo = Colors.orange;
-            _myColorThree = Colors.grey;
-            _myColorFour = Colors.grey;
-            _myColorFive = Colors.grey;
-          }),
-          color: _myColorTwo,
-        ),
-        IconButton(
-          icon: const Icon(Icons.star),
-          onPressed: () => setState(() {
-            _myColorOne = Colors.orange;
-            _myColorTwo = Colors.orange;
-            _myColorThree = Colors.orange;
-            _myColorFour = Colors.grey;
-            _myColorFive = Colors.grey;
-          }),
-          color: _myColorThree,
-        ),
-        IconButton(
-          icon: const Icon(Icons.star),
-          onPressed: () => setState(() {
-            _myColorOne = Colors.orange;
-            _myColorTwo = Colors.orange;
-            _myColorThree = Colors.orange;
-            _myColorFour = Colors.orange;
-            _myColorFive = Colors.grey;
-          }),
-          color: _myColorFour,
-        ),
-        IconButton(
-          icon: const Icon(Icons.star),
-          onPressed: () => setState(() {
-            _myColorOne = Colors.orange;
-            _myColorTwo = Colors.orange;
-            _myColorThree = Colors.orange;
-            _myColorFour = Colors.orange;
-            _myColorFive = Colors.orange;
-          }),
-          color: _myColorFive,
-        ),
-      ],
+          onPressed: () => _handleStarTap(index + 1),
+          color: index < _selectedStars ? Colors.orange : Colors.grey,
+        );
+      }),
     );
   }
 }

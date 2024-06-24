@@ -221,7 +221,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
