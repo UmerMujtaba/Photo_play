@@ -11,13 +11,16 @@ class MovieDetailScreen extends StatelessWidget {
   final String description;
   final String imageURL;
   final List<String> genres;
+  final List<Map<String, String>> actors;
 
   const MovieDetailScreen(
       {Key? key,
       required this.name,
       required this.rate,
       required this.description,
-      required this.imageURL, required this.genres})
+      required this.imageURL,
+      required this.genres,
+      required this.actors})
       : super(key: key);
 
   @override
@@ -49,12 +52,11 @@ class MovieDetailScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.pushNamed(context, '/detail');
                           },
-                          child:  Image.network(
+                          child: Image.network(
                             imageURL,
                             fit: BoxFit.fill,
                             width: double.maxFinite,
                             height: 300,
-
                           ),
                         ),
                       ),
@@ -93,29 +95,28 @@ class MovieDetailScreen extends StatelessWidget {
                           Text(
                             name,
                             style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold
-                            ),
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: genres
                                 .expand((genre) => [
-                              Text(
-                                genre,
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 14),
-                              ),
-                              const SizedBox(width: 4),
-                              const Text(
-                                '|',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
-                              ),
-                              const SizedBox(width: 4),
-                            ])
+                                      Text(
+                                        genre,
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 14),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      const Text(
+                                        '|',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 14),
+                                      ),
+                                      const SizedBox(width: 4),
+                                    ])
                                 .toList()
                               ..removeLast()
                               ..removeLast(), // Remove the last '|'
@@ -157,7 +158,7 @@ class MovieDetailScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                const ActorCards(),
+                ActorCards(actors: actors),
               ],
             ),
           ),
