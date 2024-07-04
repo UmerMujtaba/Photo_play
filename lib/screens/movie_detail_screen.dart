@@ -42,7 +42,7 @@ class MovieDetailScreen extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.black.withOpacity(0.7),
-                          Colors.black.withOpacity(0.2),
+                          Colors.black.withOpacity(0.4),
                         ],
                       ).createShader(bounds),
                       blendMode: BlendMode.srcATop,
@@ -109,13 +109,13 @@ class MovieDetailScreen extends StatelessWidget {
                                         style: const TextStyle(
                                             color: Colors.white, fontSize: 14),
                                       ),
-                                      const SizedBox(width: 4),
+                                      const SizedBox(width: 15),
                                       const Text(
                                         '|',
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 14),
                                       ),
-                                      const SizedBox(width: 4),
+                                      const SizedBox(width: 15),
                                     ])
                                 .toList()
                               ..removeLast()

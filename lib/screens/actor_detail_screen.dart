@@ -33,19 +33,17 @@ class ActorDetailScreen extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Colors.black.withOpacity(0.6),
-                          Colors.black.withOpacity(0.2),
+                          Colors.black.withOpacity(0.5),
+                          Colors.black.withOpacity(0.5),
                         ],
                       ).createShader(bounds),
                       blendMode: BlendMode.srcATop,
                       child: Center(
-                        child: ClipOval(
-                          child: Image.asset(
-                            actorImage,
-                            fit: BoxFit.fill,
-                            width: 300.0,
-                            height: 400.0,
-                          ),
+                        child: Image.asset(
+                          actorImage,
+                          fit: BoxFit.fill,
+                          width: double.maxFinite,
+                          height: 400,
                         ),
                       ),
                     ),
@@ -88,18 +86,19 @@ class ActorDetailScreen extends StatelessWidget {
                               fontSize: 30,
                             ),
                           ),
-                          const SizedBox(height: 2),
-                          Text(
-                            actorName.split(' ')[1],
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                            ),
-                          ),
+
                         ],
                       ),
                     )
                   ],
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  actorName.split(' ')[1],
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Text(
