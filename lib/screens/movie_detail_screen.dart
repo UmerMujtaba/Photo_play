@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../components/bottom_bar.dart';
-import '../components/button.dart';
+import '../components/button_component.dart';
 import '../components/actor_movie_cards.dart';
 import '../components/star_component.dart';
 
