@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const ProfileScreen(),
         '/download':(context)=>const DownloadScreen(),
         '/detail': (context)=> const MovieDetailScreen(),
-        '/actor': (context)=> const ActorDetailScreen(),
+        '/actor': (context)=> const ActorDetailScreen(actorName: '', actorImage: '', actorDescription: '',),
 
       },
       // home: HomeScreen(),
