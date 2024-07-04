@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/search': (context) => const SearchScreen(),
         '/profile': (context) => const ProfileScreen(),
         '/download':(context)=>const DownloadScreen(),
-        '/detail': (context)=> const MovieDetailScreen(name: '', rate: '', description: '', imageURL: '', genres: [],),
+        //'/detail': (context)=> const MovieDetailScreen(name: '', rate: '', description: '', imageURL: '', genres: [],),
         '/actor': (context)=> const ActorDetailScreen(actorName: '', actorImage: '', actorDescription: '',),
 
       },
