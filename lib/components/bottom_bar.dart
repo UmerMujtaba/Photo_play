@@ -19,13 +19,13 @@ class _barState extends State<bar> {
       Navigator.pushNamed(context, '/main');
     }
     if (index == 1) {
-      Navigator.restorablePushReplacementNamed(context, '/search');
+      Navigator.pushNamed(context, '/search');
     }
     if (index == 2) {
-      Navigator.restorablePushReplacementNamed(context, '/download');
+      Navigator.pushNamed(context, '/download');
     }
     if (index == 3) {
-      Navigator.restorablePushReplacementNamed(context, '/profile');
+      Navigator.pushNamed(context, '/profile');
     }
     setState(() {
       _selectedTabIndex = index;
