@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import '../components/actor_details_movie_cards.dart';
 import '../components/bottom_bar.dart';
 
-class ActorDetailScreen extends StatefulWidget {
-  const ActorDetailScreen({Key? key}) : super(key: key);
+class ActorDetailScreen extends StatelessWidget {
+  final String actorName;
+  final String actorImage;
+  final String actorDescription;
 
-  @override
-  State<ActorDetailScreen> createState() => _ActorDetailScreenState();
-}
-
-class _ActorDetailScreenState extends State<ActorDetailScreen> {
+  const ActorDetailScreen({
+    Key? key,
+    required this.actorName,
+    required this.actorImage,
+    required this.actorDescription,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +38,13 @@ class _ActorDetailScreenState extends State<ActorDetailScreen> {
                         ],
                       ).createShader(bounds),
                       blendMode: BlendMode.srcATop,
-                      child: const Center(
+                      child: Center(
                         child: ClipOval(
-                          child: Image(
-                            image: AssetImage('assets/actor/mihceal2.png'),
+                          child: Image.asset(
+                            actorImage,
                             fit: BoxFit.fill,
-                            width: 300.0, // specify a width
-                            height: 400.0, // specify a height
+                            width: 300.0,
+                            height: 400.0,
                           ),
                         ),
                       ),
@@ -71,7 +74,7 @@ class _ActorDetailScreenState extends State<ActorDetailScreen> {
                         ],
                       ),
                     ),
-                    const Positioned(
+                    Positioned(
                       bottom: 20,
                       left: 0,
                       right: 0,
@@ -79,16 +82,16 @@ class _ActorDetailScreenState extends State<ActorDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Michael',
-                            style: TextStyle(
+                            actorName.split(' ')[0],
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 30,
                             ),
                           ),
-                          SizedBox(height: 2),
+                          const SizedBox(height: 2),
                           Text(
-                            'Pena',
-                            style: TextStyle(
+                            actorName.split(' ')[1],
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 22,
                             ),
@@ -99,14 +102,14 @@ class _ActorDetailScreenState extends State<ActorDetailScreen> {
                   ],
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                    'Micheal pena was born and raised in Chicago, to Nicolasa, a social worker, and Eleuterio Pena, who worked '
-                        'at button factory. His parents were originally from Mexico',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                    textAlign: TextAlign.start),
+                Text(
+                  actorDescription,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
                 const SizedBox(height: 20),
                 const Row(
                   children: [
@@ -126,7 +129,6 @@ class _ActorDetailScreenState extends State<ActorDetailScreen> {
         ),
         bottomNavigationBar: const bar(),
       ),
-
     );
   }
 }

@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:photoplay/components/bottom_bar.dart';
-import 'package:photoplay/components/star_component.dart';
 
+import '../components/bottom_bar.dart';
 import '../components/button.dart';
-import '../components/movie_details_actor_cards.dart';
-import 'actor_screen.dart';
+import '../components/actor_movie_cards.dart';
+import '../components/star_component.dart';
 
-class MovieDetailScreen extends StatefulWidget {
+class MovieDetailScreen extends StatelessWidget {
   const MovieDetailScreen({Key? key}) : super(key: key);
 
-  @override
-  State<MovieDetailScreen> createState() => _MovieDetailScreenState();
-}
-
-class _MovieDetailScreenState extends State<MovieDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -149,7 +143,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 const StarComponent(),
                 const Text(
                     'Having spent most of her life exploring the jungle, '
-                    'nothing could prepare Dora for her most dangerous adventure yet - high school.',
+                        'nothing could prepare Dora for her most dangerous adventure yet - high school.',
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
@@ -175,10 +169,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     )
                   ],
                 ),
-                ActorCards(onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const ActorDetailScreen()));
-                },),
+                ActorCards(),
               ],
             ),
           ),
