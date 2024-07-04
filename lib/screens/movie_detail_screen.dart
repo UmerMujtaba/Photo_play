@@ -6,7 +6,19 @@ import '../components/actor_movie_cards.dart';
 import '../components/star_component.dart';
 
 class MovieDetailScreen extends StatelessWidget {
-  const MovieDetailScreen({Key? key}) : super(key: key);
+  final String name;
+  final String rate;
+  final String description;
+  final String imageURL;
+  final List<String> genres;
+
+  const MovieDetailScreen(
+      {Key? key,
+      required this.name,
+      required this.rate,
+      required this.description,
+      required this.imageURL, required this.genres})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +38,7 @@ class MovieDetailScreen extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Colors.black.withOpacity(1),
+                          Colors.black.withOpacity(0.7),
                           Colors.black.withOpacity(0.2),
                         ],
                       ).createShader(bounds),
@@ -35,13 +47,14 @@ class MovieDetailScreen extends StatelessWidget {
                         height: 300,
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, '/detail');
+                            Navigator.pushNamed(context, '/detail');
                           },
-                          child: const Image(
-                            image: AssetImage('assets/movies/doraback1.jpg'),
+                          child:  Image.network(
+                            imageURL,
                             fit: BoxFit.fill,
                             width: double.maxFinite,
                             height: 300,
+
                           ),
                         ),
                       ),
@@ -71,80 +84,55 @@ class MovieDetailScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Positioned(
+                    Positioned(
                       bottom: 16,
                       left: 16,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Dora and the lost city of gold',
-                            style: TextStyle(
+                            name,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 24,
+                              fontWeight: FontWeight.bold
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
+                            children: genres
+                                .expand((genre) => [
                               Text(
-                                'Movie',
-                                style: TextStyle(
+                                genre,
+                                style: const TextStyle(
                                     color: Colors.white, fontSize: 14),
                               ),
-                              SizedBox(width: 4),
-                              Text(
+                              const SizedBox(width: 4),
+                              const Text(
                                 '|',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 14),
                               ),
-                              SizedBox(width: 4),
-                              Text(
-                                'Adventure',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
-                              ),
-                              SizedBox(width: 4),
-                              Text(
-                                '|',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
-                              ),
-                              SizedBox(width: 4),
-                              Text(
-                                'Comedy',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
-                              ),
-                              SizedBox(width: 4),
-                              Text(
-                                '|',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
-                              ),
-                              SizedBox(width: 4),
-                              Text(
-                                'Family',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
-                              ),
-                            ],
+                              const SizedBox(width: 4),
+                            ])
+                                .toList()
+                              ..removeLast()
+                              ..removeLast(), // Remove the last '|'
                           ),
                         ],
                       ),
                     ),
                   ],
                 ),
-                const Text(
-                  '4.0',
-                  style: TextStyle(color: Colors.white, fontSize: 34),
+                SizedBox(height: 20),
+                Text(
+                  rate,
+                  style: const TextStyle(color: Colors.white, fontSize: 34),
                 ),
                 const StarComponent(),
-                const Text(
-                    'Having spent most of her life exploring the jungle, '
-                        'nothing could prepare Dora for her most dangerous adventure yet - high school.',
-                    style: TextStyle(
+                Text(description,
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
                     ),
@@ -169,7 +157,7 @@ class MovieDetailScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                ActorCards(),
+                const ActorCards(),
               ],
             ),
           ),
