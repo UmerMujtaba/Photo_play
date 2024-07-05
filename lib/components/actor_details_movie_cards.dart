@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/theme_provider.dart';
 
 class ActorMovieCards extends StatelessWidget {
-  const ActorMovieCards({Key? key}) : super(key: key);
+  const ActorMovieCards({super.key});
 
   final List<Map<String, String>> movies = const [
     {'image': 'assets/movies/12strong.jfif', 'name': '12 Strong'},
@@ -14,6 +17,9 @@ class ActorMovieCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(10),
       child: SizedBox(
@@ -44,7 +50,7 @@ class ActorMovieCards extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     movie['name']!,
-                    style: const TextStyle(color: Colors.white),
+                    style:  TextStyle(color: isDarkMode ? Colors.white : Colors.black,),
                   ),
                 ],
               ),

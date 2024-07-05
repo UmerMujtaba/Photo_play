@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/theme_provider.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -10,29 +13,42 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: isDarkMode ? Colors.black : Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: const Icon(
-          Icons.arrow_back_ios_new_sharp,
-          size: 20,
-          color: Colors.white,
+        backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+          ),
+          color: isDarkMode ? Colors.white : Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        title: const Text(
+        title: Text(
           'Back',
           style: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              color: isDarkMode ? Colors.white : Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(30,0,30,0),
+        padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Image(image: AssetImage('assets/logo1.png'),height: 100,),
+                const Image(
+                  image: AssetImage('assets/logo1.png'),
+                  height: 100,
+                ),
                 const Text(
                   'PHOTOPLAY',
                   style: TextStyle(
@@ -42,28 +58,30 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   'Forgot Password?',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.black,
+                      fontSize: 18),
                 ),
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   'Enter the email address you used to create your account and we will email you a link to reset your password',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: isDarkMode ? Colors.grey : Colors.grey,
                     fontSize: 16,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 15),
-                const Row(
+                Row(
                   children: [
                     Padding(
                       padding: EdgeInsets.fromLTRB(5, 0, 0, 5),
                       child: Text(
                         'Email',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 14),
                       ),
@@ -77,15 +95,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     obscureText: true,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.grey[900],
+                      fillColor:
+                          isDarkMode ? Colors.white : Colors.grey.shade400,
                       border: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.white, width: 2.0),
+                        borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       hintText: 'Enter Email',
                     ),
-                    style: const TextStyle(color: Colors.white, fontSize: 14),
+                    style: const TextStyle(color: Colors.black, fontSize: 14),
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -103,7 +121,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                       padding: const EdgeInsets.fromLTRB(108, 10, 108, 10),
+                        padding: const EdgeInsets.fromLTRB(108, 10, 108, 10),
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent),
                     child: const Text(

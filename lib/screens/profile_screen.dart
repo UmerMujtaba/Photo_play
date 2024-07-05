@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/theme_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -10,9 +13,31 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 20,
+            ),
+            color: isDarkMode ? Colors.white : Colors.black,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: Text(
+            'Profile',
+            style: TextStyle(
+                color: isDarkMode ? Colors.white : Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+        ),
         body: Padding(
           padding: const EdgeInsets.only(top: 40),
           child: Center(
@@ -24,7 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                        color: Colors.yellow, width: 4), // Yellow border
+                        color: isDarkMode ? Colors.yellow : Colors.orange,
+                        width: 4), // Yellow border
                   ),
                   child: CircleAvatar(
                     radius: 50,
@@ -39,18 +65,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   'Tasun Prsaad',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: isDarkMode ? Colors.white : Colors.black,
                     fontSize: 26,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 const SizedBox(height: 5),
-                const Text(
+                Text(
                   'Premium',
-                  style: TextStyle(color: Colors.yellow, fontSize: 20),
+                  style: TextStyle(
+                      color: isDarkMode ? Colors.yellow : Colors.orange,
+                      fontSize: 20),
                 ),
                 const SizedBox(height: 20),
                 Expanded(
@@ -62,74 +90,130 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           SizedBox(
                             height: double.maxFinite,
                             child: ListView(
-                              children:
-                              ListTile.divideTiles(context: context, tiles: [
-                                const ListTile(
-                                  leading: Icon(
-                                    Icons.person_outline,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                  title: Text('Connected Account',style: TextStyle(color: Colors.white),),
-                                  trailing: Icon(
-                                    Icons.arrow_right_sharp,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                ),
-                                const ListTile(
-                                  leading: Icon(
-                                    Icons.notifications_none,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                  title: Text('Privacy and Security',style: TextStyle(color: Colors.white),),
-                                  trailing: Icon(
-                                    Icons.arrow_right_sharp,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                ),
-                                const ListTile(
-                                  leading: Icon(
-                                    Icons.wallet_outlined,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                  title: Text('Login Settings',style: TextStyle(color: Colors.white),),
-                                  trailing: Icon(
-                                    Icons.arrow_right_sharp,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                ),
-                                const ListTile(
-                                  leading: Icon(
-                                    Icons.key_outlined,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                  title: Text('Service Center',style: TextStyle(color: Colors.white),),
-                                  trailing: Icon(
-                                    Icons.arrow_right_sharp,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                ),
-                                const ListTile(
-                                  leading: Icon(
-                                    Icons.logout,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                  title: Text('Logout',style: TextStyle(color: Colors.white),),
-                                  trailing: Icon(
-                                    Icons.arrow_right_sharp,
-                                    color: Colors.white,
-                                    size: 22,
-                                  ),
-                                ),
-                              ]).toList(),
+                              children: ListTile.divideTiles(
+                                  context: context,
+                                  tiles: [
+                                    ListTile(
+                                      leading: Icon(
+                                        Icons.person_outline,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                      title: Text(
+                                        'Connected Account',
+                                        style: TextStyle(
+                                          color: isDarkMode
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.arrow_right_sharp,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                    ),
+                                    ListTile(
+                                      leading: Icon(
+                                        Icons.notifications_none,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                      title: Text(
+                                        'Privacy and Security',
+                                        style: TextStyle(
+                                          color: isDarkMode
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.arrow_right_sharp,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                    ),
+                                    ListTile(
+                                      leading: Icon(
+                                        Icons.wallet_outlined,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                      title: Text(
+                                        'Login Settings',
+                                        style: TextStyle(
+                                          color: isDarkMode
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.arrow_right_sharp,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                    ),
+                                    ListTile(
+                                      leading: Icon(
+                                        Icons.key_outlined,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                      title: Text(
+                                        'Service Center',
+                                        style: TextStyle(
+                                          color: isDarkMode
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.arrow_right_sharp,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                    ),
+                                    ListTile(
+                                      leading: Icon(
+                                        Icons.logout,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                      title: Text(
+                                        'Logout',
+                                        style: TextStyle(
+                                          color: isDarkMode
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.arrow_right_sharp,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
+                                        size: 22,
+                                      ),
+                                    ),
+                                  ]).toList(),
                             ),
                           ),
                           //SizedBox(height: 60),
