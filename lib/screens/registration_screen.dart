@@ -22,7 +22,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           backgroundColor: isDarkMode ? Colors.black : Colors.white,
           leading: Icon(
@@ -37,15 +37,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
-          actions: <Widget>[
-            Switch(
-              value: isDarkMode,
-              onChanged: (isOn) {
-                themeProvider
-                    .toggleTheme(isOn ? ThemeMode.dark : ThemeMode.light);
-              },
-            ),
-          ],
+
         ),
         body: SingleChildScrollView(
           child: Column(
