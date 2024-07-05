@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/theme_provider.dart';
 import '../screens/actor_detail_screen.dart';
 
 class ActorCards extends StatelessWidget {
 
   final List<Map<String, String>> actors;
 
-  const ActorCards({Key? key, required this.actors}) : super(key: key);
+  const ActorCards({super.key, required this.actors});
 
 
   @override
   Widget build(BuildContext context) {
+
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(10),
       child: SizedBox(
@@ -38,7 +44,7 @@ class ActorCards extends StatelessWidget {
                       );
                     },
                     child: Card(
-                      elevation: 10,
+                      elevation: 5,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -55,7 +61,7 @@ class ActorCards extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     actor['name']!,
-                    style: const TextStyle(color: Colors.white),
+                    style:  TextStyle(color: isDarkMode ? Colors.white : Colors.black,),
                   ),
                 ],
               ),

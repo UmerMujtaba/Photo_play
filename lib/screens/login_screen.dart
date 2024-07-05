@@ -1,12 +1,13 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:photoplay/screens/main_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../components/button_component.dart';
+import '../provider/theme_provider.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -15,9 +16,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black54,
+        backgroundColor: isDarkMode ? Colors.black54 : Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -28,9 +32,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     shaderCallback: (bounds) => LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [
+                      colors: isDarkMode? [
                         Colors.black.withOpacity(0.2),
                         Colors.black.withOpacity(0.9),
+
+                      ]:[
+                        Colors.white.withOpacity(0.2),
+                        Colors.white.withOpacity(1),
                       ],
                     ).createShader(bounds),
                     blendMode: BlendMode.srcATop,
@@ -44,14 +52,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Column(
                     children: [
-                      const Row(
+                      Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(35, 0, 0, 5),
+                            padding: const EdgeInsets.fromLTRB(35, 0, 0, 5),
                             child: Text(
                               'EMAIL',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color:
+                                      isDarkMode ? Colors.white : Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -64,10 +73,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           obscureText: false,
                           decoration: InputDecoration(
                               filled: true,
-                              fillColor: Colors.grey[900],
+                              fillColor: isDarkMode
+                                  ? Colors.white54
+                                  : Colors.grey.shade600,
                               border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Colors.white, width: 2.0),
+                                borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               labelText: '',
@@ -81,14 +91,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               const SizedBox(height: 10),
-              const Row(
+              Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(35, 0, 0, 5),
+                    padding: const EdgeInsets.fromLTRB(35, 0, 0, 5),
                     child: Text(
                       'PASSWORD',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: isDarkMode ? Colors.white : Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16),
                     ),
@@ -101,10 +111,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.grey[900],
+                    fillColor:
+                        isDarkMode ? Colors.white54 : Colors.grey.shade600,
                     border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.white, width: 2.0),
+                      borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     hintText: 'Password',
@@ -118,8 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 44.0,
                 padding: const EdgeInsets.fromLTRB(120, 10, 120, 10),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const MainScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MainScreen()));
                 },
               ),
               const SizedBox(height: 15),
@@ -131,13 +143,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Container(
                       height: 1.0,
                       width: 80.0,
-                      color: Colors.white,
+                      color: isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
-                  const Text(
+                  Text(
                     'Social Logins',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: isDarkMode ? Colors.white : Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   ),
@@ -146,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Container(
                       height: 1.0,
                       width: 80.0,
-                      color: Colors.white,
+                      color: isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                 ],
@@ -162,9 +174,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(50.0),
                       color: Colors.yellowAccent,
                     ),
-                    child: const Icon(
+                    child:  Icon(
                       Icons.facebook_sharp,
                       size: 40,
+                      color: isDarkMode ? Colors.black : Colors.black,
                     ),
                   ),
                   const SizedBox(width: 30),
@@ -175,22 +188,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(50.0),
                       color: Colors.yellowAccent,
                     ),
-                    child: const Icon(
+                    child:  Icon(
                       Icons.g_mobiledata,
                       size: 40,
+                      color: isDarkMode ? Colors.black : Colors.black,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/forgot');
+                },
+                child: const Text(
+                  'Forgot Password',
+                  style: TextStyle(color: Colors.grey, fontSize: 13),
+                ),
+              ),
+              const SizedBox(height: 5),
               const Text(
                 'Don\'t have an account?',
                 style: TextStyle(color: Colors.grey, fontSize: 15),
               ),
-              const Text(
+              Text(
                 'REGISTER',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: isDarkMode ? Colors.white : Colors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2),
