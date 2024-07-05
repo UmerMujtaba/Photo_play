@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photoplay/screens/watch_now_screen.dart';
 
 import '../components/bottom_bar.dart';
 import '../components/button_component.dart';
@@ -10,6 +11,7 @@ class MovieDetailScreen extends StatelessWidget {
   final String rate;
   final String description;
   final String imageURL;
+  final String bgImgURL;
   final List<String> genres;
   final List<Map<String, String>> actors;
 
@@ -20,7 +22,8 @@ class MovieDetailScreen extends StatelessWidget {
       required this.description,
       required this.imageURL,
       required this.genres,
-      required this.actors})
+      required this.actors,
+      required this.bgImgURL})
       : super(key: key);
 
   @override
@@ -144,7 +147,18 @@ class MovieDetailScreen extends StatelessWidget {
                   height: 44.0,
                   padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
                   onPressed: () {
-                    // Add your action here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WatchNowScreen(
+                          MovieName: name,
+                          Rating: rate,
+                          Description: description,
+                          Genres: genres,
+                          BackgroundImageURL: bgImgURL,
+                        ),
+                      ),
+                    );
                   },
                 ),
                 const Row(
