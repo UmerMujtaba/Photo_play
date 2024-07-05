@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:photoplay/screens/watch_now_screen.dart';
 
 import '../components/bottom_bar.dart';
-import '../components/button.dart';
+import '../components/button_component.dart';
 import '../components/actor_movie_cards.dart';
 import '../components/star_component.dart';
 
@@ -10,6 +11,7 @@ class MovieDetailScreen extends StatelessWidget {
   final String rate;
   final String description;
   final String imageURL;
+  final String bgImgURL;
   final List<String> genres;
   final List<Map<String, String>> actors;
 
@@ -20,7 +22,8 @@ class MovieDetailScreen extends StatelessWidget {
       required this.description,
       required this.imageURL,
       required this.genres,
-      required this.actors})
+      required this.actors,
+      required this.bgImgURL})
       : super(key: key);
 
   @override
@@ -42,7 +45,7 @@ class MovieDetailScreen extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.black.withOpacity(0.7),
-                          Colors.black.withOpacity(0.2),
+                          Colors.black.withOpacity(0.4),
                         ],
                       ).createShader(bounds),
                       blendMode: BlendMode.srcATop,
@@ -109,13 +112,13 @@ class MovieDetailScreen extends StatelessWidget {
                                         style: const TextStyle(
                                             color: Colors.white, fontSize: 14),
                                       ),
-                                      const SizedBox(width: 4),
+                                      const SizedBox(width: 15),
                                       const Text(
                                         '|',
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 14),
                                       ),
-                                      const SizedBox(width: 4),
+                                      const SizedBox(width: 15),
                                     ])
                                 .toList()
                               ..removeLast()
@@ -144,7 +147,18 @@ class MovieDetailScreen extends StatelessWidget {
                   height: 44.0,
                   padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
                   onPressed: () {
-                    // Add your action here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WatchNowScreen(
+                          MovieName: name,
+                          Rating: rate,
+                          Description: description,
+                          Genres: genres,
+                          BackgroundImageURL: bgImgURL,
+                        ),
+                      ),
+                    );
                   },
                 ),
                 const Row(

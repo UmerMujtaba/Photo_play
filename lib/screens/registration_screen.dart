@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../components/button.dart';
-import '../components/registration.dart';
+import '../components/button_component.dart';
+import '../components/registration_component.dart';
 import 'login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
