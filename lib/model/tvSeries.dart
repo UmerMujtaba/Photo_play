@@ -6,6 +6,7 @@ class Tvseries {
   String? posterPath;
   double voteAverage;
   String firstAirDate;
+  bool isFavorite;
 
   Tvseries({
     required this.name,
@@ -15,6 +16,7 @@ class Tvseries {
     this.posterPath,
     required this.voteAverage,
     required this.firstAirDate,
+    this.isFavorite = false,
   });
 
   factory Tvseries.fromJson(Map<String, dynamic> json) {

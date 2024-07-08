@@ -6,7 +6,7 @@ class Movie {
   final String? posterPath; // Nullable type
   final String releaseDate;
   final double voteAverage;
-
+bool isFavorite;
   Movie({
     required this.title,
     this.backDropPath,
@@ -15,6 +15,7 @@ class Movie {
     this.posterPath,
     required this.releaseDate,
     required this.voteAverage,
+    this.isFavorite=  false
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {

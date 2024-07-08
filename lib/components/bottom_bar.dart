@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:photoplay/screens/download_screen.dart';
+import 'package:photoplay/screens/favorite_screen.dart';
 import 'package:photoplay/screens/main_screen.dart';
 import 'package:photoplay/screens/profile_screen.dart';
 import 'package:photoplay/screens/search_screen.dart';
@@ -22,7 +22,7 @@ class _barState extends State<bar> {
       Navigator.pushNamed(context, '/search');
     }
     if (index == 2) {
-      Navigator.pushNamed(context, '/download');
+      Navigator.pushNamed(context, '/favorite');
     }
     if (index == 3) {
       Navigator.pushNamed(context, '/profile');
@@ -36,7 +36,7 @@ class _barState extends State<bar> {
   final List<Widget> screens = [
     const MainScreen(),
     const SearchScreen(),
-    const DownloadScreen(),
+    const FavoritesScreen(),
     const ProfileScreen(),
   ];
 
@@ -67,8 +67,8 @@ class _barState extends State<bar> {
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.download),
-              label: 'Downloads',
+              icon: Icon(Icons.favorite),
+              label: 'Favorites',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

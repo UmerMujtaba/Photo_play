@@ -10,10 +10,11 @@ import '../components/button_component.dart';
 import '../components/actor_movie_cards.dart';
 import '../components/star_component.dart';
 import '../cosntants.dart';
+import '../provider/favorite_provider.dart';
 import '../provider/theme_provider.dart';
 import '../widgets/movie_details_back_button.dart';
 
-class TvSeriesDetailScreen extends StatelessWidget {
+class TvSeriesDetailScreen extends StatefulWidget {
   const TvSeriesDetailScreen({
     super.key,
     required this.series,
@@ -21,6 +22,11 @@ class TvSeriesDetailScreen extends StatelessWidget {
 
   final Tvseries series;
 
+  @override
+  State<TvSeriesDetailScreen> createState() => _TvSeriesDetailScreenState();
+}
+
+class _TvSeriesDetailScreenState extends State<TvSeriesDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +39,23 @@ class TvSeriesDetailScreen extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverAppBar.large(
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.series.isFavorite = !widget.series.isFavorite;
+                      Provider.of<FavoritesProvider>(context, listen: false)
+                          .toggleFavorite(widget.series);
+                    });
+                  },
+                  icon: Icon(
+                    widget.series.isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: widget.series.isFavorite ? Colors.red : null,
+                  ),
+                ),
+              ],
               leading: BackBtn(),
               backgroundColor: Colors.black,
               expandedHeight: 400,
@@ -40,7 +63,7 @@ class TvSeriesDetailScreen extends StatelessWidget {
               floating: true,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
-                  series.name,
+                  widget.series.name,
                   style: GoogleFonts.belleza(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
@@ -52,7 +75,7 @@ class TvSeriesDetailScreen extends StatelessWidget {
                     bottomRight: Radius.circular(24),
                   ),
                   child: Image.network(
-                    '${Constants.imagePath}${series.backDropPath}',
+                    '${Constants.imagePath}${widget.series.backDropPath}',
 
                     fit: BoxFit.fill,
                     filterQuality: FilterQuality.high,
@@ -74,7 +97,7 @@ class TvSeriesDetailScreen extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    Text(series.overview,
+                    Text(widget.series.overview,
                         style: TextStyle(
                           color: isDarkMode ? Colors.grey : Colors.black,
                           fontSize: 14,
@@ -84,7 +107,6 @@ class TvSeriesDetailScreen extends StatelessWidget {
                     SizedBox(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                         children: [
                           Container(
                             padding: const EdgeInsets.all(8),
@@ -103,7 +125,7 @@ class TvSeriesDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  series.firstAirDate,
+                                  widget.series.firstAirDate,
                                   style: GoogleFonts.roboto(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -134,7 +156,7 @@ class TvSeriesDetailScreen extends StatelessWidget {
                                   color: Colors.amber,
                                 ),
                                 Text(
-                                  '${series.voteAverage.toStringAsFixed(1)}/10',
+                                  '${widget.series.voteAverage.toStringAsFixed(1)}/10',
                                   style: GoogleFonts.roboto(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,

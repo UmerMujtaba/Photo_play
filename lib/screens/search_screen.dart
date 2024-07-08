@@ -122,7 +122,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TvSeriesDetailScreen(series: series),
+                            builder: (context) => TvSeriesDetailScreen(series: series,),
                           ),
                         );
                       },

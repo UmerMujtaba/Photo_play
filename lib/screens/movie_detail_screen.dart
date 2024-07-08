@@ -9,10 +9,11 @@ import '../components/button_component.dart';
 import '../components/actor_movie_cards.dart';
 import '../components/star_component.dart';
 import '../cosntants.dart';
+import '../provider/favorite_provider.dart';
 import '../provider/theme_provider.dart';
 import '../widgets/movie_details_back_button.dart';
 
-class MovieDetailScreen extends StatelessWidget {
+class MovieDetailScreen extends StatefulWidget {
   const MovieDetailScreen({
     super.key,
     required this.movie,
@@ -20,6 +21,11 @@ class MovieDetailScreen extends StatelessWidget {
 
   final Movie movie;
 
+  @override
+  State<MovieDetailScreen> createState() => _MovieDetailScreenState();
+}
+
+class _MovieDetailScreenState extends State<MovieDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +38,23 @@ class MovieDetailScreen extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverAppBar.large(
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.movie.isFavorite = !widget.movie.isFavorite;
+                      Provider.of<FavoritesProvider>(context, listen: false)
+                          .toggleFavorite(widget.movie);
+                    });
+                  },
+                  icon: Icon(
+                    widget.movie.isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: widget.movie.isFavorite ? Colors.red : null,
+                  ),
+                ),
+              ],
               leading: BackBtn(),
               backgroundColor: Colors.black,
               expandedHeight: 400,
@@ -39,7 +62,7 @@ class MovieDetailScreen extends StatelessWidget {
               floating: true,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
-                  movie.title,
+                  widget.movie.title,
                   style: GoogleFonts.belleza(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
@@ -51,7 +74,7 @@ class MovieDetailScreen extends StatelessWidget {
                     bottomRight: Radius.circular(24),
                   ),
                   child: Image.network(
-                    '${Constants.imagePath}${movie.backDropPath}',
+                    '${Constants.imagePath}${widget.movie.backDropPath}',
 
                     fit: BoxFit.fill,
                     filterQuality: FilterQuality.high,
@@ -73,7 +96,7 @@ class MovieDetailScreen extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    Text(movie.overview,
+                    Text(widget.movie.overview,
                         style: TextStyle(
                           color: isDarkMode ? Colors.grey : Colors.black,
                           fontSize: 14,
@@ -102,7 +125,7 @@ class MovieDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  movie.releaseDate,
+                                  widget.movie.releaseDate,
                                   style: GoogleFonts.roboto(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -133,7 +156,7 @@ class MovieDetailScreen extends StatelessWidget {
                                   color: Colors.amber,
                                 ),
                                 Text(
-                                  '${movie.voteAverage.toStringAsFixed(1)}/10',
+                                  '${widget.movie.voteAverage.toStringAsFixed(1)}/10',
                                   style: GoogleFonts.roboto(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,

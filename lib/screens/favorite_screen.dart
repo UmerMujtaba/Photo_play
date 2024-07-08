@@ -1,51 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../cosntants.dart';
 import '../model/data.dart';
+import '../provider/favorite_provider.dart';
 import '../provider/theme_provider.dart';
 
-class DownloadScreen extends StatefulWidget {
-  const DownloadScreen({super.key});
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-  @override
-  State<DownloadScreen> createState() => _DownloadScreenState();
-}
+import 'TvSeriesDetailScreen.dart';
+import 'movie_detail_screen.dart';
 
-class _DownloadScreenState extends State<DownloadScreen> {
+class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    final favoritesProvider = Provider.of<FavoritesProvider>(context);
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        appBar: AppBar(
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-            ),
-            color: isDarkMode ? Colors.white : Colors.black,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: Text(
-            'Downloads',
-            style: TextStyle(
-                color: isDarkMode ? Colors.white : Colors.black,
-                fontWeight: FontWeight.bold),
-          ),
-          centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Favorites'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                ListView.builder(
+      ),
+      body: ListView(
+        children: [
+          ...favoritesProvider.favoriteMovies.map((movie) => ListTile(
+                leading: Image.network(
+                  '${Constants.imagePath}${movie.posterPath}',
+                  fit: BoxFit.cover,
+                  width: 50,
+                ),
+                title: Text(movie.title),
+                subtitle: Text(movie.releaseDate ?? ''),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MovieDetailScreen(movie: movie),
+                  ),
+                ),
+              )),
+          ...favoritesProvider.favoriteSeries.map((series) => ListTile(
+                title: Text(series.name),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TvSeriesDetailScreen(series: series),
+                  ),
+                ),
+              )),
+        ],
+      ),
+    );
+  }
+}
+
+/*ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: movies2.length,
@@ -132,12 +149,4 @@ class _DownloadScreenState extends State<DownloadScreen> {
                       ],
                     );
                   },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+                ),*/

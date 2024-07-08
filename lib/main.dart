@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:photoplay/provider/favorite_provider.dart';
 import 'package:photoplay/provider/theme_provider.dart';
 import 'package:photoplay/no_use/actor_detail_screen.dart';
-import 'package:photoplay/screens/download_screen.dart';
+import 'package:photoplay/screens/favorite_screen.dart';
 import 'package:photoplay/screens/forgot_password_screen.dart';
 import 'package:photoplay/screens/main_screen.dart';
 import 'package:photoplay/screens/login_screen.dart';
@@ -15,12 +16,16 @@ import 'ok.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
-      child: const MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: MyApp(),
     ),
   );
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -29,7 +34,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: MyAppThemes.lightTheme,
       darkTheme: MyAppThemes.darkTheme,
-      themeMode: ThemeMode.system, // Default mode
+      themeMode: ThemeMode.system,
+      // Default mode
       initialRoute: '/registration',
       routes: {
         '/login': (context) => const LoginScreen(),
@@ -38,13 +44,15 @@ class MyApp extends StatelessWidget {
         '/main': (context) => const MainScreen(),
         '/search': (context) => const SearchScreen(),
         '/profile': (context) => const ProfileScreen(),
-        '/download':(context)=>const DownloadScreen(),
+        '/favorite': (context) => const FavoritesScreen(),
         //'/detail': (context)=> const MovieDetailScreen(name: '', rate: '', description: '', imageURL: '', genres: [],),
-        '/actor': (context)=> const ActorDetailScreen(actorName: '', actorImage: '', actorDescription: '',),
-
+        '/actor': (context) => const ActorDetailScreen(
+              actorName: '',
+              actorImage: '',
+              actorDescription: '',
+            ),
       },
       // home: HomeScreen(),
-
     );
   }
 }

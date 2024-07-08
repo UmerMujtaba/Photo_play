@@ -6,14 +6,13 @@ class BackBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      height: 60,
-      width: 70,
+
       margin: const EdgeInsets.only(
         top: 16,
         left: 16,
       ),
       decoration: BoxDecoration(
-          color: Colors.black,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(8)),
       child: IconButton(
         onPressed: () {
