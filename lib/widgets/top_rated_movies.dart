@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../cosntants.dart';
 import '../provider/theme_provider.dart';
+import '../screens/movie_detail_screen.dart';
 
 class TopRatedMovies extends StatelessWidget {
   const TopRatedMovies({Key? key, required this.snapshot}) : super(key: key);
@@ -25,18 +26,30 @@ class TopRatedMovies extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.all(8),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                      child: Image.network(
-                        '${Constants.imagePath}${snapshot.data![index].posterPath}',
-                        filterQuality: FilterQuality.high,
-                        fit: BoxFit.cover,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MovieDetailScreen(
+                          movie: snapshot.data[index], actors: [],
+                        ),
                       ),
-                      height: 200,
-                      width: 120,
+                    );
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        child: Image.network(
+                          '${Constants.imagePath}${snapshot.data![index].posterPath}',
+                          filterQuality: FilterQuality.high,
+                          fit: BoxFit.cover,
+                        ),
+                        height: 200,
+                        width: 120,
+                      ),
                     ),
                   ),
                 );

@@ -31,15 +31,27 @@ class TrendingMovies extends StatelessWidget {
           autoPlayAnimationDuration: Duration(seconds: 1),
         ),
         itemBuilder: (context, itemIndex, pageViewIndex) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: SizedBox(
-              height: 300,
-              width: 200,
-              child: Image.network(
-                '${Constants.imagePath}${snapshot.data[itemIndex].posterPath}',
-                filterQuality: FilterQuality.high,
-                fit: BoxFit.cover,
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MovieDetailScreen(
+                    movie: snapshot.data[itemIndex], actors: [],
+                  ),
+                ),
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: SizedBox(
+                height: 300,
+                width: 200,
+                child: Image.network(
+                  '${Constants.imagePath}${snapshot.data[itemIndex].posterPath}',
+                  filterQuality: FilterQuality.high,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           );
