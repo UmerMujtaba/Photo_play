@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:photoplay/api/api.dart';
 import 'package:photoplay/components/bottom_bar.dart';
-import 'package:photoplay/components/star_component.dart';
+import 'package:photoplay/model/tvSeries.dart';
+import 'package:photoplay/widgets/TvSeries_slider.dart';
 import 'package:photoplay/widgets/main_above_trending.dart';
 import 'package:photoplay/widgets/top_rated_movies.dart';
-import 'package:photoplay/widgets/upcoming_movies.dart';
 import 'package:provider/provider.dart';
 
-import '../components/main_movies_card.dart';
+import '../widgets/trending_movies_slider.dart';
 import '../model/movie.dart';
 import '../provider/theme_provider.dart';
 
@@ -23,6 +22,9 @@ class _MainScreenState extends State<MainScreen> {
   late Future<List<Movie>> trendingMovies;
   late Future<List<Movie>> topRatedMovies;
   late Future<List<Movie>> upComingMovies;
+  late Future<List<Movie>> nowPlayingMovies;
+  late Future<List<Tvseries>> topRatedTVSeries;
+  late Future<List<Tvseries>> trendingTVSeries;
 
   @override
   void initState() {
@@ -30,6 +32,10 @@ class _MainScreenState extends State<MainScreen> {
     trendingMovies = Api().getTrendingMovies();
     topRatedMovies = Api().getTopRatedMovies();
     upComingMovies = Api().getUpcomingMovies();
+    nowPlayingMovies = Api().getNowPlayingMovies();
+
+    topRatedTVSeries = Api().getTopRatedSeries();
+    trendingTVSeries = Api().getTrendingSeries();
   }
 
   @override
@@ -43,10 +49,10 @@ class _MainScreenState extends State<MainScreen> {
           elevation: 5,
           leading: IconButton(
             onPressed: () {},
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             color: isDarkMode ? Colors.white : Colors.black,
           ),
-          title: Image(
+          title: const Image(
             image: AssetImage('assets/PHOTO.png'),
             fit: BoxFit.cover,
             height: 180,
@@ -56,17 +62,17 @@ class _MainScreenState extends State<MainScreen> {
         ),
         backgroundColor: isDarkMode ? Colors.black : Colors.white,
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              MainAboveTrending(),
-              SizedBox(height: 10),
+              const MainAboveTrending(),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
                   children: <Widget>[
                     Text(
-                      'Trending Movies',
+                      'Now playing',
                       style: TextStyle(
                           color: isDarkMode ? Colors.white : Colors.black,
                           fontWeight: FontWeight.bold,
@@ -77,7 +83,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
               SizedBox(
                 child: FutureBuilder(
-                  future: trendingMovies,
+                  future: nowPlayingMovies,
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
@@ -85,6 +91,7 @@ class _MainScreenState extends State<MainScreen> {
                       );
                     } else if (snapshot.hasData) {
                       final data = snapshot.data;
+
                       return TrendingMovies(
                         snapshot: snapshot,
                       );
@@ -96,11 +103,11 @@ class _MainScreenState extends State<MainScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               Row(
                 children: [
                   Text(
-                    'Top rated Movies',
+                    'Trending Movies',
                     style: TextStyle(
                       color: isDarkMode ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
@@ -109,10 +116,10 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               SizedBox(
                 child: FutureBuilder(
-                  future: topRatedMovies,
+                  future: trendingMovies,
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
@@ -120,6 +127,7 @@ class _MainScreenState extends State<MainScreen> {
                       );
                     } else if (snapshot.hasData) {
                       final data = snapshot.data;
+                      // print('&&&&&&&&&&&&&&${data}');
                       return TopRatedMovies(
                         snapshot: snapshot,
                       );
@@ -131,7 +139,7 @@ class _MainScreenState extends State<MainScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -158,6 +166,108 @@ class _MainScreenState extends State<MainScreen> {
                     } else if (snapshot.hasData) {
                       final data = snapshot.data;
                       return TopRatedMovies(
+                        snapshot: snapshot,
+                      );
+                    } else {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    }
+                  },
+                ),
+              ),
+              const SizedBox(height: 32),
+              Row(
+                children: [
+                  Text(
+                    'Top rated Movies',
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                child: FutureBuilder(
+                  future: topRatedMovies,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    } else if (snapshot.hasData) {
+                      final data = snapshot.data;
+                      return TopRatedMovies(
+                        snapshot: snapshot,
+                      );
+                    } else {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    }
+                  },
+                ),
+              ),
+              const SizedBox(height: 32),
+              Row(
+                children: [
+                  Text(
+                    'Top rated TV Series',
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                child: FutureBuilder(
+                  future: topRatedTVSeries,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    } else if (snapshot.hasData) {
+                      final data = snapshot.data;
+                      return TopAndTrendingTvSeries(
+                        snapshot: snapshot,
+                      );
+                    } else {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    }
+                  },
+                ),
+              ),
+              const SizedBox(height: 32),
+              Row(
+                children: [
+                  Text(
+                    'Trending TV Series',
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                child: FutureBuilder(
+                  future: trendingTVSeries,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    } else if (snapshot.hasData) {
+                      final data = snapshot.data;
+                      return TopAndTrendingTvSeries(
                         snapshot: snapshot,
                       );
                     } else {

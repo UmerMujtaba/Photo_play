@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photoplay/model/movie.dart';
+import 'package:photoplay/model/tvSeries.dart';
 import 'package:photoplay/screens/watch_now_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -12,13 +13,13 @@ import '../cosntants.dart';
 import '../provider/theme_provider.dart';
 import '../widgets/movie_details_back_button.dart';
 
-class MovieDetailScreen extends StatelessWidget {
-  const MovieDetailScreen({
+class TvSeriesDetailScreen extends StatelessWidget {
+  const TvSeriesDetailScreen({
     super.key,
-    required this.movie,
+    required this.series,
   });
 
-  final Movie movie;
+  final Tvseries series;
 
 
   @override
@@ -39,7 +40,7 @@ class MovieDetailScreen extends StatelessWidget {
               floating: true,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
-                  movie.title,
+                  series.name,
                   style: GoogleFonts.belleza(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
@@ -51,7 +52,7 @@ class MovieDetailScreen extends StatelessWidget {
                     bottomRight: Radius.circular(24),
                   ),
                   child: Image.network(
-                    '${Constants.imagePath}${movie.backDropPath}',
+                    '${Constants.imagePath}${series.backDropPath}',
 
                     fit: BoxFit.fill,
                     filterQuality: FilterQuality.high,
@@ -73,7 +74,7 @@ class MovieDetailScreen extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    Text(movie.overview,
+                    Text(series.overview,
                         style: TextStyle(
                           color: isDarkMode ? Colors.grey : Colors.black,
                           fontSize: 14,
@@ -102,7 +103,7 @@ class MovieDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  movie.releaseDate,
+                                  series.firstAirDate,
                                   style: GoogleFonts.roboto(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -119,7 +120,7 @@ class MovieDetailScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Row(
-                               children: [
+                              children: [
                                 Text(
                                   'Rating: ',
                                   style: GoogleFonts.roboto(
@@ -133,7 +134,7 @@ class MovieDetailScreen extends StatelessWidget {
                                   color: Colors.amber,
                                 ),
                                 Text(
-                                  '${movie.voteAverage.toStringAsFixed(1)}/10',
+                                  '${series.voteAverage.toStringAsFixed(1)}/10',
                                   style: GoogleFonts.roboto(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,

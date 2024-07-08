@@ -31,13 +31,14 @@ class TrendingMovies extends StatelessWidget {
           autoPlayAnimationDuration: Duration(seconds: 1),
         ),
         itemBuilder: (context, itemIndex, pageViewIndex) {
+
           return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => MovieDetailScreen(
-                    movie: snapshot.data[itemIndex], actors: [],
+                    movie: snapshot.data[itemIndex],
                   ),
                 ),
               );

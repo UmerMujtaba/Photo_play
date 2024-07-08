@@ -3,10 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../cosntants.dart';
 import '../provider/theme_provider.dart';
+import '../screens/TvSeriesDetailScreen.dart';
 import '../screens/movie_detail_screen.dart';
 
-class TopRatedMovies extends StatelessWidget {
-  const TopRatedMovies({Key? key, required this.snapshot}) : super(key: key);
+class TopAndTrendingTvSeries extends StatelessWidget {
+  const TopAndTrendingTvSeries({super.key, required this.snapshot});
   final AsyncSnapshot snapshot;
 
   @override
@@ -31,8 +32,8 @@ class TopRatedMovies extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MovieDetailScreen(
-                          movie: snapshot.data[index],
+                        builder: (context) => TvSeriesDetailScreen(
+                          series: snapshot.data[index],
                         ),
                       ),
                     );
@@ -45,10 +46,10 @@ class TopRatedMovies extends StatelessWidget {
                         height: 200,
                         width: 120,
                         child: Image.network(
-                          '${Constants.imagePath}${snapshot.data![index].posterPath}',
+                          '${Constants.imagePath2}${snapshot.data![index].backDropPath}',
                           filterQuality: FilterQuality.high,
                           fit: BoxFit.cover,
-                          scale: 1,
+
                         ),
                       ),
                     ),

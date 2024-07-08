@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/theme_provider.dart';
-import '../screens/actor_detail_screen.dart';
+import '../no_use/actor_detail_screen.dart';
 
 class ActorCards extends StatelessWidget {
 

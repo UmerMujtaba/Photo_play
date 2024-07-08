@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/actor_details_movie_cards.dart';
+import 'actor_details_movie_cards.dart';
 import '../components/bottom_bar.dart';
 import '../provider/theme_provider.dart';
 

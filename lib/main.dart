@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photoplay/provider/theme_provider.dart';
-import 'package:photoplay/screens/actor_detail_screen.dart';
+import 'package:photoplay/no_use/actor_detail_screen.dart';
 import 'package:photoplay/screens/download_screen.dart';
 import 'package:photoplay/screens/forgot_password_screen.dart';
 import 'package:photoplay/screens/main_screen.dart';
