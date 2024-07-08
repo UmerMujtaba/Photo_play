@@ -83,6 +83,8 @@ class MovieDetailScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     SizedBox(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                         children: [
                           Container(
                             padding: const EdgeInsets.all(8),
@@ -95,7 +97,7 @@ class MovieDetailScreen extends StatelessWidget {
                                 Text(
                                   'Release Date: ',
                                   style: GoogleFonts.roboto(
-                                    fontSize: 17,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,
                                   ),
@@ -103,8 +105,8 @@ class MovieDetailScreen extends StatelessWidget {
                                 Text(
                                   movie.releaseDate,
                                   style: GoogleFonts.roboto(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -118,15 +120,27 @@ class MovieDetailScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Row(
-                              children: [
+                               children: [
                                 Text(
-                                  'Rating: ', style: GoogleFonts.roboto(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
+                                  'Rating: ',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
                                 ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
                                 ),
-                                Icon(Icons.star,color: Colors.amber,)
+                                Text(
+                                  '${movie.voteAverage.toStringAsFixed(1)}/10',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                  ),
+                                )
                               ],
                             ),
                           ),
