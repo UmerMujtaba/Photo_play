@@ -21,11 +21,15 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late Future<List<Movie>> trendingMovies;
+  late Future<List<Movie>> topRatedMovies;
+  late Future<List<Movie>> upComingMovies;
 
   @override
   void initState() {
     super.initState();
     trendingMovies = Api().getTrendingMovies();
+    topRatedMovies = Api().getTopRatedMovies();
+    upComingMovies = Api().getUpcomingMovies();
   }
 
   @override
@@ -81,7 +85,9 @@ class _MainScreenState extends State<MainScreen> {
                       );
                     } else if (snapshot.hasData) {
                       final data = snapshot.data;
-                      return TrendingMovies(snapshot: snapshot,);
+                      return TrendingMovies(
+                        snapshot: snapshot,
+                      );
                     } else {
                       return Center(
                         child: Text(snapshot.error.toString()),
@@ -91,7 +97,40 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
               SizedBox(height: 32),
-              TopRatedMovies(),
+              Row(
+                children: [
+                  Text(
+                    'Top rated Movies',
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 32),
+              SizedBox(
+                child: FutureBuilder(
+                  future: topRatedMovies,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    } else if (snapshot.hasData) {
+                      final data = snapshot.data;
+                      return TopRatedMovies(
+                        snapshot: snapshot,
+                      );
+                    } else {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    }
+                  },
+                ),
+              ),
               SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -108,7 +147,27 @@ class _MainScreenState extends State<MainScreen> {
                   ],
                 ),
               ),
-              UpcomingMovies(),
+              SizedBox(
+                child: FutureBuilder(
+                  future: upComingMovies,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    } else if (snapshot.hasData) {
+                      final data = snapshot.data;
+                      return TopRatedMovies(
+                        snapshot: snapshot,
+                      );
+                    } else {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),
